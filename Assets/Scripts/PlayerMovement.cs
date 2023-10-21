@@ -42,25 +42,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision col) {
+        if (col.gameObject.tag == "EspulsionBlock") {
+            col.gameObject.GetComponent<EspulsionBlock>().Espulsion(rb);
+        }
+        if (col.gameObject.tag == "JumpBlock") {
+            col.gameObject.GetComponent<JumpBlock>().Jump(rb);
+        }
+    }
+
     private void OnCollisionStay(Collision col) {
         if(col.gameObject.tag == "SpeedBlock") {
-            float forcePush = col.gameObject.GetComponent<SpeedBlock>().force;
-            Vector3 forceDir = Vector3.zero;
-            switch (col.transform.rotation.y) {
-                case 0:
-                    forceDir = new Vector3(0, 0, 1);
-                    break;
-                case 90:
-                    forceDir = new Vector3(1, 0, 0);
-                    break;
-                case 180:
-                    forceDir = new Vector3(0, 0, -1);
-                    break;
-                case 270:
-                    forceDir = new Vector3(-1, 0, 0);
-                    break;
-            }
-            rb.AddForce(forceDir * forcePush, ForceMode.VelocityChange);
+            col.gameObject.GetComponent<SpeedBlock>().Speed(rb);
         }
     }
 }
