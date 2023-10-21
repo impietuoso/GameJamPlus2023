@@ -1,3 +1,4 @@
+using Drafts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,27 +11,51 @@ public class PlayerInput : MonoBehaviour {
     public Transform arrow;
     Vector3 direction;
     float impulse;
+    Camera cmain;
+    public Vector3 arrowDirection;
+    Vector3 biladaPosition;
+    public float inputDistance;
 
     private void Awake() {
         pm = GetComponent<PlayerMovement>();
     }
 
+    private void Start() {
+        cmain = Camera.main;
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(biladaPosition, 1);
+    }
+
     private void Update() {
+        if (pm.moving) return;
+
+        if (Input.GetMouseButtonDown(0)) {
+            Ray ray = cmain.ScreenPointToRay(Input.mousePosition);
+            VectorUtil.RaycastPlane(ray, transform.up, transform.position, out biladaPosition);
+            impulse = Vector3.Distance(biladaPosition, transform.position);
+            if (impulse <= inputDistance) {
+                canMove = true;
+                arrow.gameObject.SetActive(true);
+            }            
+        }
+
         if (canMove) {
-            if (Input.GetMouseButton(0)) {
-                impulse = Vector3.Distance(Input.mousePosition, transform.position);
-                arrow.transform.localScale = new Vector3(arrow.transform.localScale.x, impulse, arrow.transform.localScale.z);
-                direction = Vector3.Normalize(transform.position - Input.mousePosition);
-                arrow.transform.rotation = Quaternion.Euler(direction);
+            if (Input.GetMouseButton(0) && arrow.gameObject.activeInHierarchy) {
+                Ray ray = cmain.ScreenPointToRay(Input.mousePosition);
+                VectorUtil.RaycastPlane(ray, transform.up, transform.position, out biladaPosition);
+                impulse = Vector3.Distance(biladaPosition, transform.position);
+                arrow.transform.localScale = new Vector3(arrow.transform.localScale.x, arrow.transform.localScale.y, impulse);
+                direction = Vector3.Normalize(transform.position - biladaPosition);
+                arrow.LookAt(biladaPosition, arrowDirection);
             }
-            if (Input.GetMouseButtonUp(0)) {
+            if (Input.GetMouseButtonUp(0) && arrow.gameObject.activeInHierarchy) {
                 canMove = false;
+                arrow.gameObject.SetActive(false);
                 pm.Impulse(direction, impulse);
             }
         }
-    }
-
-    public void Stoped() {
-        canMove = true;
     }
 }
