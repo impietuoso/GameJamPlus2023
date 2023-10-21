@@ -16,4 +16,8 @@ public class GravityPull : MonoBehaviour {
 		other.position = curr;
 	}
 
+	private void OnDrawGizmosSelected() {
+		Gizmos.color = Color.white;
+		Gizmos.DrawWireSphere(transform.position, collider.radius);
+	}
 }
