@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
-    public float timeLimit;
     public float currentTime;
     public TextMeshProUGUI currentTimerText;
     public int recordTime;
@@ -24,16 +23,10 @@ public class GameManager : MonoBehaviour {
 
     private void Update() {
         currentTime += Time.deltaTime;
-        if(!gameOver)
-        currentTimerText.text = currentTime.ToString("F0") + "s";
-
-        if (currentTime >= timeLimit) {
-            if (!gameOver)
-                GameOver();
-        }
+        if (!gameOver)
+            currentTimerText.text = currentTime.ToString("F0") + "s";
 
         if (Input.GetKeyDown(KeyCode.K)) Win();
-
     }
 
     public void Win() {
@@ -97,7 +90,7 @@ public class GameManager : MonoBehaviour {
 
     private void OnCollisionEnter(Collision col) {
         if (col.gameObject.tag == "Player") {
-            ReloadScene();
+            GameOver();
         }
     }
 }
