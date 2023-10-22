@@ -5223,7 +5223,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jump: {fileID: 8300000, guid: edea4a61b698c5e4f911adba7c2fe700, type: 3}
   hit: {fileID: 8300000, guid: 069292e86131e164c81b8ac81f5d356b, type: 3}
-  speed: {fileID: 8300000, guid: 069292e86131e164c81b8ac81f5d356b, type: 3}
+  speed: {fileID: 8300000, guid: 5f80dd11004691c45aa90da3265eeba8, type: 3}
+  win: {fileID: 8300000, guid: 318f4fe376e22c74b8fd93116dfaebdb, type: 3}
 --- !u!1 &3500149174439263560
 GameObject:
   m_ObjectHideFlags: 0
