@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
     public bool gameOver;
     public GameObject gameOverPanel;
     public TextMeshProUGUI gameOverText;
+    public GameObject winButton;
+    public GameObject retryButton;
     public PlayerInput pi;
 
     private void Awake() {
