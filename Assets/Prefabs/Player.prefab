@@ -5102,6 +5102,7 @@ GameObject:
   - component: {fileID: 3500149174362078813}
   - component: {fileID: 3500149174362078810}
   - component: {fileID: 2039324765}
+  - component: {fileID: 214909826258239504}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -5208,6 +5209,21 @@ MonoBehaviour:
   pivot: {x: 0, y: 0}
   movingMouse: {x: 0, y: 0}
   dif: 0
+--- !u!114 &214909826258239504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3500149174362078788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2a649a2ff548f47b81b8ec8e4a5be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jump: {fileID: 8300000, guid: edea4a61b698c5e4f911adba7c2fe700, type: 3}
+  hit: {fileID: 8300000, guid: 069292e86131e164c81b8ac81f5d356b, type: 3}
+  speed: {fileID: 8300000, guid: 069292e86131e164c81b8ac81f5d356b, type: 3}
 --- !u!1 &3500149174439263560
 GameObject:
   m_ObjectHideFlags: 0
@@ -5407,6 +5423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3500149174893487062}
   - component: {fileID: 3500149174893487081}
+  - component: {fileID: 4617007383714928032}
   m_Layer: 6
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -5470,7 +5487,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 70d364ee994207c4b87f3d284e5bb01b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b2e3a5e81b07674e87d9eab40037534, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5481,6 +5498,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4617007383714928032
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3500149174893487063}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1bfd632d84df5934fb6740d68a1b0ed3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &3500149175476480293
 GameObject:
   m_ObjectHideFlags: 0

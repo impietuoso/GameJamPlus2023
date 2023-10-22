@@ -24,11 +24,6 @@ public class PlayerInput : MonoBehaviour {
         cmain = Camera.main;
     }
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(biladaPosition, 1);
-    }
-
     private void Update() {
         if (pm.moving) return;
 

@@ -31,19 +31,33 @@ public class GameManager : MonoBehaviour {
             if (!gameOver)
                 GameOver();
         }
+
+        if (Input.GetKeyDown(KeyCode.K)) Win();
+
     }
 
     public void Win() {
-        recordTime = (int)currentTime;
         string stageId = "Stage" + SceneManager.GetActiveScene().buildIndex.ToString();
+        recordTime = (int)currentTime;
+        gameOver = true;
 
         if (recordTime > PlayerPrefs.GetInt(stageId, 0))
             PlayerPrefs.SetInt(stageId, recordTime);
 
-    }
+        int minutes = 0;
+        int removedSeconds = 0;
+        while (recordTime > 59) {
+            minutes++;
+            removedSeconds += 60;
+        }
+        int seconds = recordTime - removedSeconds;
+        recordText.text = minutes + "m " + seconds + "s";
 
-    public void NextState() {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        gameOverPanel.SetActive(true);
+        gameOverText.text = "Fase\nConcluída";
+        winButton.SetActive(true);
+        retryButton.SetActive(false);
+        Time.timeScale = 0;
     }
 
     void GameOver() {
@@ -58,12 +72,27 @@ public class GameManager : MonoBehaviour {
             removedSeconds += 60;
         }
         int seconds = recordTime - removedSeconds;
-        recordText.text = "Record Time: " + minutes + "m : " + seconds + "s";
+        recordText.text = minutes + "m " + seconds + "s";
         gameOverPanel.SetActive(true);
+        gameOverText.text = "Você\nPerdeu";
+        winButton.SetActive(false);
+        retryButton.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void NextState() {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1;
     }
 
     public void ReloadScene() {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+    }
+
+    public void MainMenu() {
+        SceneManager.LoadSceneAsync(0);
+        Time.timeScale = 1;
     }
 
     private void OnCollisionEnter(Collision col) {

@@ -18,5 +18,6 @@ public class JumpBlock : MonoBehaviour {
         } else rb.AddForce(new Vector3(0, force, 0) * 10, ForceMode.Impulse);
         xStop = false;
         zStop = false;
+        AudioManager.instance.PlaySFX(PlayerSounds.instance.jump);
     }
 }

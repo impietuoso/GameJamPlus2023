@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         moving = true;
         stopIndicator.SetActive(false);
         rb.AddForce(new Vector3(dir.x, 0, dir.z) * (forceImpulse * maxSpeed * 1000));
+        AudioManager.instance.PlaySFX(PlayerSounds.instance.speed);
     }
 
     private void Update() {
@@ -42,17 +43,27 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider col) {
+        if (col.gameObject.CompareTag("WinBlock")) {
+            col.gameObject.GetComponent<WinBlock>().Win();
+            AudioManager.instance.PlaySFX(PlayerSounds.instance.win);
+        }
+    }
+
     private void OnCollisionEnter(Collision col) {
-        if (col.gameObject.tag == "EspulsionBlock") {
+        if (col.gameObject.CompareTag("EspulsionBlock")) {
             col.gameObject.GetComponent<EspulsionBlock>().Espulsion(rb);
         }
-        if (col.gameObject.tag == "JumpBlock") {
+        if (col.gameObject.CompareTag("JumpBlock")) {
             col.gameObject.GetComponent<JumpBlock>().Jump(rb);
+        }
+        if (col.gameObject.CompareTag("SpeedBlock")) {
+            AudioManager.instance.PlaySFX(PlayerSounds.instance.speed);
         }
     }
 
     private void OnCollisionStay(Collision col) {
-        if(col.gameObject.tag == "SpeedBlock") {
+        if(col.gameObject.CompareTag("SpeedBlock")) {
             col.gameObject.GetComponent<SpeedBlock>().Speed(rb);
         }
     }
