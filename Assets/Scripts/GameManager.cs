@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public float timeLimit;
     public float currentTime;
+    public TextMeshProUGUI currentTimerText;
     public int recordTime;
     public TextMeshProUGUI recordText;
     public bool gameOver;
     public GameObject gameOverPanel;
+    public TextMeshProUGUI gameOverText;
     public PlayerInput pi;
 
     private void Awake() {
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour {
 
     private void Update() {
         currentTime += Time.deltaTime;
+        if(!gameOver)
+        currentTimerText.text = currentTime.ToString("F0") + "s";
 
         if (currentTime >= timeLimit) {
             if (!gameOver)
@@ -34,6 +38,9 @@ public class GameManager : MonoBehaviour {
         if (recordTime > PlayerPrefs.GetInt(stageId, 0))
             PlayerPrefs.SetInt(stageId, recordTime);
 
+    }
+
+    public void NextState() {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
