@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 228850174631327156}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &228850174631327147
 GameObject:
@@ -150,4 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39559dd69d89aae42bd6e3e8cb77c05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 2.5
+  force: 3

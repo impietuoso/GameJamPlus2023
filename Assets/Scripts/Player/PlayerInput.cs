@@ -32,6 +32,8 @@ public class PlayerInput : MonoBehaviour {
     private void Update() {
         if (pm.moving) return;
 
+        if(Time.timeScale == 0) return;
+
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = cmain.ScreenPointToRay(Input.mousePosition);
             VectorUtil.RaycastPlane(ray, transform.up, transform.position, out biladaPosition);
