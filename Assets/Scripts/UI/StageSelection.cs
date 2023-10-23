@@ -9,23 +9,33 @@ public class StageSelection : MonoBehaviour
     public TextMeshProUGUI[] stageText;
 
     public void ShowRecords() {
-        for (int i = 0; i < stageText.Length; i++) {
-            GetRecord(i);
-        }
+        GetRecord(0);
+        GetRecord(1);
+        GetRecord(2);
     }
 
     void GetRecord(int i) {
-        string stageId = "Stage" + i + 1;
-        int recordTime = PlayerPrefs.GetInt(stageId, 10);
-
+        int n = i + 1;
+        string stageId = "Stage" + n;
+        int recordTime = PlayerPrefs.GetInt(stageId, 150);
         int minutes = 0;
-        int removedSeconds = 0;
-        while (recordTime > 59) {
+
+        if (recordTime > 59) {
             minutes++;
-            removedSeconds += 60;
+            recordTime -= 60;
         }
-        int seconds = recordTime - removedSeconds;
+        if (recordTime > 59) {
+            minutes++;
+            recordTime -= 60;
+        }
+        if (recordTime > 59) {
+            minutes++;
+            recordTime -= 60;
+        }
+
+        int seconds = recordTime;
         stageText[i].text = minutes + "m " + seconds + "s";
+        Debug.Log(seconds);
     }
 
     public void GoToStage(int stage) {

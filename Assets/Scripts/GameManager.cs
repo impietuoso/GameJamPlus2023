@@ -26,45 +26,63 @@ public class GameManager : MonoBehaviour {
         if (!gameOver)
             currentTimerText.text = currentTime.ToString("F0") + "s";
 
-        if (Input.GetKeyDown(KeyCode.K)) Win();
+        //if (Input.GetKeyDown(KeyCode.K)) Win();
     }
 
     public void Win() {
         string stageId = "Stage" + SceneManager.GetActiveScene().buildIndex.ToString();
         recordTime = (int)currentTime;
         gameOver = true;
-
-        if (recordTime > PlayerPrefs.GetInt(stageId, 0))
+        if (recordTime < PlayerPrefs.GetInt(stageId, 150))
             PlayerPrefs.SetInt(stageId, recordTime);
 
         int minutes = 0;
-        int removedSeconds = 0;
-        while (recordTime > 59) {
+
+        if (recordTime > 59) {
             minutes++;
-            removedSeconds += 60;
+            recordTime -= 60;
         }
-        int seconds = recordTime - removedSeconds;
+        if (recordTime > 59) {
+            minutes++;
+            recordTime -= 60;
+        }
+        if (recordTime > 59) {
+            minutes++;
+            recordTime -= 60;
+        }
+
+        int seconds = recordTime;
         recordText.text = minutes + "m " + seconds + "s";
 
         gameOverPanel.SetActive(true);
         gameOverText.text = "Fase\nConcluída";
-        winButton.SetActive(true);
+        if (SceneManager.GetActiveScene().buildIndex != 3)
+            winButton.SetActive(true);
         retryButton.SetActive(false);
         Time.timeScale = 0;
     }
 
     void GameOver() {
         string stageId = "Stage" + SceneManager.GetActiveScene().buildIndex.ToString();
-        recordTime = PlayerPrefs.GetInt(stageId, 0);
+        recordTime = PlayerPrefs.GetInt(stageId, 150);
         gameOver = true;
         pi.enabled = false;
         int minutes = 0;
-        int removedSeconds = 0;
-        while (recordTime > 59) {
+
+        if (recordTime > 59) {
             minutes++;
-            removedSeconds += 60;
+            recordTime -= 60;
         }
-        int seconds = recordTime - removedSeconds;
+        if (recordTime > 59) {
+            minutes++;
+            recordTime -= 60;
+        }
+        if (recordTime > 59) {
+            minutes++;
+            recordTime -= 60;
+        }
+
+        int seconds = recordTime;
         recordText.text = minutes + "m " + seconds + "s";
         gameOverPanel.SetActive(true);
         gameOverText.text = "Você\nPerdeu";

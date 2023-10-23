@@ -22,6 +22,7 @@ public class PlayerInput : MonoBehaviour {
 
     private void Start() {
         cmain = Camera.main;
+        if (Time.timeScale == 0) Time.timeScale = 1;
     }
 
     private void Update() {

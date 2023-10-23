@@ -5,7 +5,7 @@ using UnityEngine;
 public class WinBlock : MonoBehaviour
 {
     public void Win() {
-        Invoke("CallWin", 1f);
+        Invoke("CallWin", 0.5f);
     }
 
     void CallWin() {
