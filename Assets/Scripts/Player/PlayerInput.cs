@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour {
     public Vector3 arrowDirection;
     Vector3 biladaPosition;
     public float inputDistance;
+    public RuntimeAnimatorController[] playerSkin;
 
     private void Awake() {
         pm = GetComponent<PlayerMovement>();
@@ -23,6 +24,7 @@ public class PlayerInput : MonoBehaviour {
     private void Start() {
         cmain = Camera.main;
         if (Time.timeScale == 0) Time.timeScale = 1;
+        GetComponentInChildren<Animator>().runtimeAnimatorController = playerSkin[PlayerPrefs.GetInt("Skin", 0)];
     }
 
     private void Update() {

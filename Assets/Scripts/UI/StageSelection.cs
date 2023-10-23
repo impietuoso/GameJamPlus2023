@@ -35,7 +35,6 @@ public class StageSelection : MonoBehaviour
 
         int seconds = recordTime;
         stageText[i].text = minutes + "m " + seconds + "s";
-        Debug.Log(seconds);
     }
 
     public void GoToStage(int stage) {

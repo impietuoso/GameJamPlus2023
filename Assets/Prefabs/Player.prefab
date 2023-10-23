@@ -5329,7 +5329,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  testMaxSpeed: 0
 --- !u!114 &3500149174362078810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5346,6 +5345,9 @@ MonoBehaviour:
   arrow: {fileID: 3500149175476480292}
   arrowDirection: {x: 0, y: 1, z: 0}
   inputDistance: 1
+  playerSkin:
+  - {fileID: 9100000, guid: 637cf4c34eedc964fa47491f5c90fce3, type: 2}
+  - {fileID: 9100000, guid: 1bfd632d84df5934fb6740d68a1b0ed3, type: 2}
 --- !u!114 &2039324765
 MonoBehaviour:
   m_ObjectHideFlags: 0
